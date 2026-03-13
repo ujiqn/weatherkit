@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WeatherKit Lab</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#0d1117;color:#c9d1d9;padding:1.5rem;max-width:960px;margin:0 auto}
+h1{font-size:1.3rem;font-weight:600;color:#58a6ff;margin-bottom:.2rem}
+.sub{font-size:.7rem;color:#484f58;margin-bottom:1.5rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.7rem;margin-bottom:1.5rem}
+.card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:.8rem}
+.card .v{font-size:1.6rem;font-weight:700;color:#f0f6fc}
+.card .l{font-size:.65rem;color:#484f58;margin-top:.15rem}
+.dim{color:#484f58}
+h2{font-size:.95rem;font-weight:600;color:#8b949e;margin:1.5rem 0 .6rem;border-bottom:1px solid #21262d;padding-bottom:.3rem}
+.sec{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:.8rem;margin-bottom:1rem;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.75rem}
+th{text-align:left;color:#8b949e;font-weight:500;padding:.35rem .5rem;border-bottom:1px solid #30363d}
+td{padding:.35rem .5rem;border-bottom:1px solid #21262d}
+.code{font-family:'SF Mono',monospace;font-size:.72rem;color:#79c0ff}
+.bc{position:relative}
+.bar{position:absolute;left:0;top:0;bottom:0;background:#1f6feb22;border-radius:3px}
+.bt{position:relative;z-index:1}
+.rng{font-size:.68rem;color:#8b949e}
+.jp{background:#1a1f2b}
+.footer{font-size:.65rem;color:#484f58;margin-top:1.5rem;text-align:center}
+</style>
+</head>
+<body>
+<h1>WeatherKit Lab</h1>
+<div class="sub">conditionCode 定期観測ダッシュボード — 最終更新: <span id="ts"></span></div>
+
+<div class="grid">
+  <div class="card"><div class="v">599</div><div class="l">総レコード</div></div>
+  <div class="card"><div class="v">13<span class="dim">/37</span></div><div class="l">ユニーク Code</div></div>
+  <div class="card"><div class="v">1</div><div class="l">cron 実行回数</div></div>
+  <div class="card"><div class="v">25</div><div class="l">cron レコード</div></div>
+</div>
+
+<h2>conditionCode 分布（全データ）</h2>
+<div class="sec"><table>
+<tr><th>conditionCode</th><th>件数</th><th></th></tr>
+<tr><td class="code">Clear</td><td>140</td><td class="bc"><div class="bar" style="width:100.0%"></div><span class="bt">23.4%</span></td></tr><tr><td class="code">PartlyCloudy</td><td>98</td><td class="bc"><div class="bar" style="width:70.0%"></div><span class="bt">16.4%</span></td></tr><tr><td class="code">Cloudy</td><td>98</td><td class="bc"><div class="bar" style="width:70.0%"></div><span class="bt">16.4%</span></td></tr><tr><td class="code">MostlyClear</td><td>91</td><td class="bc"><div class="bar" style="width:65.0%"></div><span class="bt">15.2%</span></td></tr><tr><td class="code">MostlyCloudy</td><td>87</td><td class="bc"><div class="bar" style="width:62.1%"></div><span class="bt">14.5%</span></td></tr><tr><td class="code">Windy</td><td>23</td><td class="bc"><div class="bar" style="width:16.4%"></div><span class="bt">3.8%</span></td></tr><tr><td class="code">Drizzle</td><td>23</td><td class="bc"><div class="bar" style="width:16.4%"></div><span class="bt">3.8%</span></td></tr><tr><td class="code">Rain</td><td>20</td><td class="bc"><div class="bar" style="width:14.3%"></div><span class="bt">3.3%</span></td></tr><tr><td class="code">Haze</td><td>8</td><td class="bc"><div class="bar" style="width:5.7%"></div><span class="bt">1.3%</span></td></tr><tr><td class="code">Snow</td><td>4</td><td class="bc"><div class="bar" style="width:2.9%"></div><span class="bt">0.7%</span></td></tr><tr><td class="code">HeavyRain</td><td>4</td><td class="bc"><div class="bar" style="width:2.9%"></div><span class="bt">0.7%</span></td></tr><tr><td class="code">Foggy</td><td>2</td><td class="bc"><div class="bar" style="width:1.4%"></div><span class="bt">0.3%</span></td></tr><tr><td class="code">HeavySnow</td><td>1</td><td class="bc"><div class="bar" style="width:0.7%"></div><span class="bt">0.2%</span></td></tr>
+</table></div>
+
+<h2>conditionCode 分布（日本のみ・131件）</h2>
+<div class="sec jp"><table>
+<tr><th>conditionCode</th><th>件数</th><th></th></tr>
+<tr><td class="code">PartlyCloudy</td><td>32</td><td class="bc"><div class="bar" style="width:100.0%"></div><span class="bt">24.4%</span></td></tr><tr><td class="code">Cloudy</td><td>26</td><td class="bc"><div class="bar" style="width:81.3%"></div><span class="bt">19.8%</span></td></tr><tr><td class="code">MostlyCloudy</td><td>26</td><td class="bc"><div class="bar" style="width:81.3%"></div><span class="bt">19.8%</span></td></tr><tr><td class="code">MostlyClear</td><td>18</td><td class="bc"><div class="bar" style="width:56.3%"></div><span class="bt">13.7%</span></td></tr><tr><td class="code">Clear</td><td>13</td><td class="bc"><div class="bar" style="width:40.6%"></div><span class="bt">9.9%</span></td></tr><tr><td class="code">Windy</td><td>9</td><td class="bc"><div class="bar" style="width:28.1%"></div><span class="bt">6.9%</span></td></tr><tr><td class="code">Snow</td><td>3</td><td class="bc"><div class="bar" style="width:9.4%"></div><span class="bt">2.3%</span></td></tr><tr><td class="code">Drizzle</td><td>3</td><td class="bc"><div class="bar" style="width:9.4%"></div><span class="bt">2.3%</span></td></tr><tr><td class="code">Rain</td><td>1</td><td class="bc"><div class="bar" style="width:3.1%"></div><span class="bt">0.8%</span></td></tr>
+</table></div>
+
+<h2>conditionCode パラメータ分析</h2>
+<div class="sec"><table>
+<tr><th>Code</th><th>N</th><th>Temperature (°C)</th><th>Wind (km/h)</th><th>Humidity</th><th>CloudCover</th><th>Precip</th></tr>
+<tr><td class="code">Clear</td><td>140</td><td class="rng">-37.0 ~ 44.6 (20.1)</td><td class="rng">0.3 ~ 23.8 (7.1)</td><td class="rng">0.1 ~ 0.9 (0.5)</td><td class="rng">0.0 ~ 0.1 (0)</td><td class="rng">0.0 ~ 0.0 (0)</td></tr><tr><td class="code">PartlyCloudy</td><td>98</td><td class="rng">-30.4 ~ 34.5 (18)</td><td class="rng">0.7 ~ 23.6 (9.5)</td><td class="rng">0.1 ~ 0.9 (0.7)</td><td class="rng">0.4 ~ 0.6 (0.5)</td><td class="rng">0.0 ~ 2.4 (0.1)</td></tr><tr><td class="code">Cloudy</td><td>98</td><td class="rng">-29.6 ~ 32.3 (13.5)</td><td class="rng">0.5 ~ 23.9 (8.4)</td><td class="rng">0.1 ~ 1.0 (0.7)</td><td class="rng">0.9 ~ 1.0 (0.9)</td><td class="rng">0.0 ~ 1.0 (0)</td></tr><tr><td class="code">MostlyClear</td><td>91</td><td class="rng">-33.8 ~ 44.9 (20.4)</td><td class="rng">0.4 ~ 22.4 (9)</td><td class="rng">0.1 ~ 0.9 (0.6)</td><td class="rng">0.1 ~ 0.4 (0.2)</td><td class="rng">0.0 ~ 0.0 (0)</td></tr><tr><td class="code">MostlyCloudy</td><td>87</td><td class="rng">-25.6 ~ 42.6 (16.9)</td><td class="rng">0.6 ~ 22.0 (8.4)</td><td class="rng">0.1 ~ 1.0 (0.7)</td><td class="rng">0.6 ~ 0.9 (0.8)</td><td class="rng">0.0 ~ 1.7 (0.1)</td></tr><tr><td class="code">Windy</td><td>23</td><td class="rng">-4.5 ~ 31.2 (19.8)</td><td class="rng">24.7 ~ 34.0 (28.2)</td><td class="rng">0.5 ~ 0.8 (0.7)</td><td class="rng">0.1 ~ 1.0 (0.8)</td><td class="rng">0.0 ~ 1.0 (0.1)</td></tr><tr><td class="code">Drizzle</td><td>23</td><td class="rng">2.1 ~ 31.5 (21.5)</td><td class="rng">0.4 ~ 67.3 (16.1)</td><td class="rng">0.7 ~ 1.0 (0.8)</td><td class="rng">0.6 ~ 1.0 (0.9)</td><td class="rng">0.3 ~ 0.9 (0.6)</td></tr><tr><td class="code">Rain</td><td>20</td><td class="rng">1.9 ~ 28.8 (22.6)</td><td class="rng">2.8 ~ 75.3 (19.2)</td><td class="rng">0.8 ~ 1.0 (0.9)</td><td class="rng">0.8 ~ 1.0 (0.9)</td><td class="rng">0.9 ~ 6.1 (2.4)</td></tr><tr><td class="code">Haze</td><td>8</td><td class="rng">-9.9 ~ 11.6 (0.3)</td><td class="rng">0.4 ~ 14.9 (7.6)</td><td class="rng">0.9 ~ 0.9 (0.9)</td><td class="rng">0.7 ~ 1.0 (0.9)</td><td class="rng">0.0 ~ 0.3 (0)</td></tr><tr><td class="code">Snow</td><td>4</td><td class="rng">-3.5 ~ 0.5 (-1.1)</td><td class="rng">4.2 ~ 15.6 (8.7)</td><td class="rng">0.7 ~ 0.9 (0.8)</td><td class="rng">0.9 ~ 1.0 (1)</td><td class="rng">0.3 ~ 0.7 (0.5)</td></tr><tr><td class="code">HeavyRain</td><td>4</td><td class="rng">14.4 ~ 27.1 (22.5)</td><td class="rng">1.3 ~ 71.3 (33.6)</td><td class="rng">0.9 ~ 1.0 (0.9)</td><td class="rng">0.9 ~ 1.0 (1)</td><td class="rng">6.7 ~ 32.7 (17.1)</td></tr><tr><td class="code">Foggy</td><td>2</td><td class="rng">-7.2 ~ -5.2 (-6.2)</td><td class="rng">12.9 ~ 13.4 (13.1)</td><td class="rng">0.9 ~ 0.9 (0.9)</td><td class="rng">1.0 ~ 1.0 (1)</td><td class="rng">0.0 ~ 0.0 (0)</td></tr><tr><td class="code">HeavySnow</td><td>1</td><td class="rng">-3.5 ~ -3.5 (-3.5)</td><td class="rng">12.9 ~ 12.9 (12.9)</td><td class="rng">0.9 ~ 0.9 (0.9)</td><td class="rng">1.0 ~ 1.0 (1)</td><td class="rng">1.6 ~ 1.6 (1.6)</td></tr>
+</table></div>
+
+<h2>最新の観測（直近25件）</h2>
+<div class="sec"><table>
+<tr><th>時刻(JST)</th><th>地点</th><th>Code</th><th>気温</th><th>風速</th><th>雲量</th><th>降水</th></tr>
+<tr>
+  <td class="dim">3/14 07:22</td>
+  <td>reykjavik</td><td class="code">PartlyCloudy</td>
+  <td>0.5°C</td><td>14.5</td>
+  <td>57%</td><td>0.0</td>
+</tr><tr>
+  <td class="dim">3/14 07:22</td>
+  <td>bogota</td><td class="code">Cloudy</td>
+  <td>17.5°C</td><td>7.8</td>
+  <td>94%</td><td>0.3</td>
+</tr><tr>
+  <td class="dim">3/14 07:22</td>
+  <td>jakarta</td><td class="code">MostlyClear</td>
+  <td>24.0°C</td><td>3.4</td>
+  <td>30%</td><td>0.0</td>
+</tr><tr>
+  <td class="dim">3/14 07:22</td>
+  <td>mumbai</td><td class="code">MostlyClear</td>
+  <td>26.1°C</td><td>3.9</td>
+  <td>22%</td><td>0.0</td>
+</tr><tr>
+  <td class="dim">3/14 07:22</td>
+  <td>wellington</td><td class="code">Windy</td>
+  <td>15.5°C</td><td>25.0</td>
+  <td>99%</td><td>0.0</td>
+</tr><tr>
+  <td class="dim">3/14 07:22</td>
+  <td>denver</td><td class="code">Cloudy</td>
+  <td>20.9°C</td><td>20.7</td>
+  <td>100%</td><td>0.0</td>
+</tr><tr>
+  <td class="dim">3/14 07:22</td>
+  <td>okc</td><td class="code">MostlyCloudy</td>
+  <td>23.5°C</td><td>13.1</td>
+  <td>84%</td><td>0.0</td>
+</tr><tr>
+  <td class="dim">3/14 07:22</td>
+  <td>london</td><td class="code">PartlyCloudy</td>
+  <td>4.3°C</td><td>9.1</td>
+  <td>46%</td><td>0.0</td>
+</tr><tr>
+  <td class="dim">3/14 07:22</td>
+  <td>sf</td><td class="code">Cloudy</td>
+  <td>20.2°C</td><td>13.0</td>
+  <td>100%</td><td>0.0</td>
+</tr><tr>
+  <td class="dim">3/14 07:22</td>
+  <td>tromso</td><td class="code">Cloudy</td>
+  <td>1.4°C</td><td>6.4</td>
+  <td>97%</td><td>0.0</td>
+</tr><tr>
+  <td class="dim">3/14 07:22</td>
+  <td>yakutsk</td><td class="code">Cloudy</td>
+  <td>-16.3°C</td><td>6.2</td>
+  <td>93%</td><td>0.0</td>
+</tr><tr>
+  <td class="dim">3/14 07:22</td>
+  <td>fairbanks</td><td class="code">Cloudy</td>
+  <td>-19.6°C</td><td>2.2</td>
+  <td>100%</td><td>0.0</td>
+</tr><tr>
+  <td class="dim">3/14 07:22</td>
+  <td>delhi</td><td class="code">Cloudy</td>
+  <td>19.6°C</td><td>7.2</td>
+  <td>89%</td><td>0.0</td>
+</tr><tr>
+  <td class="dim">3/14 07:22</td>
+  <td>riyadh</td><td class="code">PartlyCloudy</td>
+  <td>18.8°C</td><td>9.2</td>
+  <td>46%</td><td>0.0</td>
+</tr><tr>
+  <td class="dim">3/14 07:22</td>
+  <td>phoenix</td><td class="code">Clear</td>
+  <td>33.0°C</td><td>6.3</td>
+  <td>0%</td><td>0.0</td>
+</tr><tr>
+  <td class="dim">3/14 07:22</td>
+  <td>manila</td><td class="code">Cloudy</td>
+  <td>21.0°C</td><td>11.1</td>
+  <td>98%</td><td>0.0</td>
+</tr><tr>
+  <td class="dim">3/14 07:22</td>
+  <td>miami</td><td class="code">Cloudy</td>
+  <td>25.1°C</td><td>8.3</td>
+  <td>100%</td><td>0.0</td>
+</tr><tr>
+  <td class="dim">3/14 07:22</td>
+  <td>kagoshima</td><td class="code">MostlyClear</td>
+  <td>4.5°C</td><td>10.8</td>
+  <td>30%</td><td>0.0</td>
+</tr><tr>
+  <td class="dim">3/14 07:22</td>
+  <td>niigata</td><td class="code">Cloudy</td>
+  <td>4.4°C</td><td>4.0</td>
+  <td>100%</td><td>0.0</td>
+</tr><tr>
+  <td class="dim">3/14 07:20</td>
+  <td>fukuoka</td><td class="code">MostlyCloudy</td>
+  <td>6.6°C</td><td>12.2</td>
+  <td>79%</td><td>0.0</td>
+</tr><tr>
+  <td class="dim">3/14 07:22</td>
+  <td>sendai</td><td class="code">MostlyClear</td>
+  <td>1.9°C</td><td>3.5</td>
+  <td>36%</td><td>0.0</td>
+</tr><tr>
+  <td class="dim">3/14 07:22</td>
+  <td>naha</td><td class="code">Windy</td>
+  <td>14.8°C</td><td>25.3</td>
+  <td>100%</td><td>0.0</td>
+</tr><tr>
+  <td class="dim">3/14 07:22</td>
+  <td>sapporo</td><td class="code">PartlyCloudy</td>
+  <td>2.2°C</td><td>14.3</td>
+  <td>62%</td><td>0.0</td>
+</tr><tr>
+  <td class="dim">3/14 07:20</td>
+  <td>osaka</td><td class="code">MostlyCloudy</td>
+  <td>5.7°C</td><td>8.1</td>
+  <td>73%</td><td>0.0</td>
+</tr><tr>
+  <td class="dim">3/14 07:21</td>
+  <td>tokyo</td><td class="code">Cloudy</td>
+  <td>5.6°C</td><td>12.6</td>
+  <td>100%</td><td>0.0</td>
+</tr>
+</table></div>
+
+<div class="footer">
+  観測期間: 2026/3/14 〜 2026/3/14
+  | batch: 493 + targeted: 81 + cron: 25
+</div>
+
+<script>document.getElementById('ts').textContent=new Date('2026-03-13T22:36:10.848Z').toLocaleString('ja-JP',{timeZone:'Asia/Tokyo'});</script>
+</body>
+</html>
