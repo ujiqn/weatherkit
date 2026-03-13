@@ -25,7 +25,13 @@ td{padding:.35rem .5rem;border-bottom:1px solid #21262d}
 .bt{position:relative;z-index:1}
 .rng{font-size:.68rem;color:#8b949e}
 .jp{background:#1a1f2b}
+.missing-list{display:flex;flex-wrap:wrap;gap:.4rem;padding:.5rem 0}
+.missing-tag{font-family:'SF Mono',monospace;font-size:.7rem;padding:.2rem .5rem;background:#21262d;border:1px solid #30363d;border-radius:4px;color:#f85149}
+.found-tag{color:#3fb950;border-color:#238636}
 .footer{font-size:.65rem;color:#484f58;margin-top:1.5rem;text-align:center}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+@media(max-width:700px){.pair{grid-template-columns:1fr}}
+.pair-label{font-size:.7rem;color:#484f58;margin-bottom:.3rem}
 </style>
 </head>
 <body>
@@ -33,23 +39,54 @@ td{padding:.35rem .5rem;border-bottom:1px solid #21262d}
 <div class="sub">conditionCode 定期観測ダッシュボード — 最終更新: <span id="ts"></span></div>
 
 <div class="grid">
+  <div class="card"><div class="v">13<span class="dim">/37</span></div><div class="l">観測済み Code</div></div>
   <div class="card"><div class="v">599</div><div class="l">総レコード</div></div>
-  <div class="card"><div class="v">13<span class="dim">/37</span></div><div class="l">ユニーク Code</div></div>
   <div class="card"><div class="v">1</div><div class="l">cron 実行回数</div></div>
   <div class="card"><div class="v">25</div><div class="l">cron レコード</div></div>
 </div>
 
-<h2>conditionCode 分布（全データ）</h2>
-<div class="sec"><table>
-<tr><th>conditionCode</th><th>件数</th><th></th></tr>
-<tr><td class="code">Clear</td><td>140</td><td class="bc"><div class="bar" style="width:100.0%"></div><span class="bt">23.4%</span></td></tr><tr><td class="code">PartlyCloudy</td><td>98</td><td class="bc"><div class="bar" style="width:70.0%"></div><span class="bt">16.4%</span></td></tr><tr><td class="code">Cloudy</td><td>98</td><td class="bc"><div class="bar" style="width:70.0%"></div><span class="bt">16.4%</span></td></tr><tr><td class="code">MostlyClear</td><td>91</td><td class="bc"><div class="bar" style="width:65.0%"></div><span class="bt">15.2%</span></td></tr><tr><td class="code">MostlyCloudy</td><td>87</td><td class="bc"><div class="bar" style="width:62.1%"></div><span class="bt">14.5%</span></td></tr><tr><td class="code">Windy</td><td>23</td><td class="bc"><div class="bar" style="width:16.4%"></div><span class="bt">3.8%</span></td></tr><tr><td class="code">Drizzle</td><td>23</td><td class="bc"><div class="bar" style="width:16.4%"></div><span class="bt">3.8%</span></td></tr><tr><td class="code">Rain</td><td>20</td><td class="bc"><div class="bar" style="width:14.3%"></div><span class="bt">3.3%</span></td></tr><tr><td class="code">Haze</td><td>8</td><td class="bc"><div class="bar" style="width:5.7%"></div><span class="bt">1.3%</span></td></tr><tr><td class="code">Snow</td><td>4</td><td class="bc"><div class="bar" style="width:2.9%"></div><span class="bt">0.7%</span></td></tr><tr><td class="code">HeavyRain</td><td>4</td><td class="bc"><div class="bar" style="width:2.9%"></div><span class="bt">0.7%</span></td></tr><tr><td class="code">Foggy</td><td>2</td><td class="bc"><div class="bar" style="width:1.4%"></div><span class="bt">0.3%</span></td></tr><tr><td class="code">HeavySnow</td><td>1</td><td class="bc"><div class="bar" style="width:0.7%"></div><span class="bt">0.2%</span></td></tr>
-</table></div>
+<h2>未観測の conditionCode（21種）</h2>
+<div class="sec">
+  <div class="missing-list">
+    <span class="missing-tag found-tag">Clear</span><span class="missing-tag found-tag">MostlyClear</span><span class="missing-tag found-tag">PartlyCloudy</span><span class="missing-tag found-tag">MostlyCloudy</span><span class="missing-tag found-tag">Cloudy</span><span class="missing-tag found-tag">Foggy</span><span class="missing-tag found-tag">Haze</span><span class="missing-tag">Smoky</span><span class="missing-tag">Breezy</span><span class="missing-tag found-tag">Windy</span><span class="missing-tag">BlowingDust</span><span class="missing-tag found-tag">Drizzle</span><span class="missing-tag">FreezingDrizzle</span><span class="missing-tag found-tag">Rain</span><span class="missing-tag found-tag">HeavyRain</span><span class="missing-tag">SunShowers</span><span class="missing-tag">FreezingRain</span><span class="missing-tag">Flurries</span><span class="missing-tag found-tag">Snow</span><span class="missing-tag found-tag">HeavySnow</span><span class="missing-tag">SunFlurries</span><span class="missing-tag">Sleet</span><span class="missing-tag">WintryMix</span><span class="missing-tag">Blizzard</span><span class="missing-tag">BlowingSnow</span><span class="missing-tag">Thunderstorms</span><span class="missing-tag">IsolatedThunderstorms</span><span class="missing-tag">ScatteredThunderstorms</span><span class="missing-tag">StrongStorms</span><span class="missing-tag">Frigid</span><span class="missing-tag">Hot</span><span class="missing-tag">Hail</span><span class="missing-tag">Hurricane</span><span class="missing-tag">TropicalStorm</span>
+  </div>
+</div>
 
-<h2>conditionCode 分布（日本のみ・131件）</h2>
-<div class="sec jp"><table>
+<h2>日本の conditionCode 分布</h2>
+<div class="pair">
+  <div>
+    <div class="pair-label">過去データ含む（123件）</div>
+    <div class="sec jp"><table>
 <tr><th>conditionCode</th><th>件数</th><th></th></tr>
-<tr><td class="code">PartlyCloudy</td><td>32</td><td class="bc"><div class="bar" style="width:100.0%"></div><span class="bt">24.4%</span></td></tr><tr><td class="code">Cloudy</td><td>26</td><td class="bc"><div class="bar" style="width:81.3%"></div><span class="bt">19.8%</span></td></tr><tr><td class="code">MostlyCloudy</td><td>26</td><td class="bc"><div class="bar" style="width:81.3%"></div><span class="bt">19.8%</span></td></tr><tr><td class="code">MostlyClear</td><td>18</td><td class="bc"><div class="bar" style="width:56.3%"></div><span class="bt">13.7%</span></td></tr><tr><td class="code">Clear</td><td>13</td><td class="bc"><div class="bar" style="width:40.6%"></div><span class="bt">9.9%</span></td></tr><tr><td class="code">Windy</td><td>9</td><td class="bc"><div class="bar" style="width:28.1%"></div><span class="bt">6.9%</span></td></tr><tr><td class="code">Snow</td><td>3</td><td class="bc"><div class="bar" style="width:9.4%"></div><span class="bt">2.3%</span></td></tr><tr><td class="code">Drizzle</td><td>3</td><td class="bc"><div class="bar" style="width:9.4%"></div><span class="bt">2.3%</span></td></tr><tr><td class="code">Rain</td><td>1</td><td class="bc"><div class="bar" style="width:3.1%"></div><span class="bt">0.8%</span></td></tr>
+<tr><td class="code">PartlyCloudy</td><td>31</td><td class="bc"><div class="bar" style="width:100.0%"></div><span class="bt">25.2%</span></td></tr><tr><td class="code">Cloudy</td><td>24</td><td class="bc"><div class="bar" style="width:77.4%"></div><span class="bt">19.5%</span></td></tr><tr><td class="code">MostlyCloudy</td><td>24</td><td class="bc"><div class="bar" style="width:77.4%"></div><span class="bt">19.5%</span></td></tr><tr><td class="code">MostlyClear</td><td>16</td><td class="bc"><div class="bar" style="width:51.6%"></div><span class="bt">13.0%</span></td></tr><tr><td class="code">Clear</td><td>13</td><td class="bc"><div class="bar" style="width:41.9%"></div><span class="bt">10.6%</span></td></tr><tr><td class="code">Windy</td><td>8</td><td class="bc"><div class="bar" style="width:25.8%"></div><span class="bt">6.5%</span></td></tr><tr><td class="code">Snow</td><td>3</td><td class="bc"><div class="bar" style="width:9.7%"></div><span class="bt">2.4%</span></td></tr><tr><td class="code">Drizzle</td><td>3</td><td class="bc"><div class="bar" style="width:9.7%"></div><span class="bt">2.4%</span></td></tr><tr><td class="code">Rain</td><td>1</td><td class="bc"><div class="bar" style="width:3.2%"></div><span class="bt">0.8%</span></td></tr>
 </table></div>
+  </div>
+  <div>
+    <div class="pair-label">cron のみ（8件）</div>
+    <div class="sec jp"><table>
+<tr><th>conditionCode</th><th>件数</th><th></th></tr>
+<tr><td class="code">Cloudy</td><td>2</td><td class="bc"><div class="bar" style="width:100.0%"></div><span class="bt">25.0%</span></td></tr><tr><td class="code">MostlyCloudy</td><td>2</td><td class="bc"><div class="bar" style="width:100.0%"></div><span class="bt">25.0%</span></td></tr><tr><td class="code">MostlyClear</td><td>2</td><td class="bc"><div class="bar" style="width:100.0%"></div><span class="bt">25.0%</span></td></tr><tr><td class="code">PartlyCloudy</td><td>1</td><td class="bc"><div class="bar" style="width:50.0%"></div><span class="bt">12.5%</span></td></tr><tr><td class="code">Windy</td><td>1</td><td class="bc"><div class="bar" style="width:50.0%"></div><span class="bt">12.5%</span></td></tr>
+</table></div>
+  </div>
+</div>
+
+<h2>世界の conditionCode 分布</h2>
+<div class="pair">
+  <div>
+    <div class="pair-label">過去データ含む（574件）</div>
+    <div class="sec"><table>
+<tr><th>conditionCode</th><th>件数</th><th></th></tr>
+<tr><td class="code">Clear</td><td>139</td><td class="bc"><div class="bar" style="width:100.0%"></div><span class="bt">24.2%</span></td></tr><tr><td class="code">PartlyCloudy</td><td>94</td><td class="bc"><div class="bar" style="width:67.6%"></div><span class="bt">16.4%</span></td></tr><tr><td class="code">MostlyClear</td><td>87</td><td class="bc"><div class="bar" style="width:62.6%"></div><span class="bt">15.2%</span></td></tr><tr><td class="code">Cloudy</td><td>87</td><td class="bc"><div class="bar" style="width:62.6%"></div><span class="bt">15.2%</span></td></tr><tr><td class="code">MostlyCloudy</td><td>84</td><td class="bc"><div class="bar" style="width:60.4%"></div><span class="bt">14.6%</span></td></tr><tr><td class="code">Drizzle</td><td>23</td><td class="bc"><div class="bar" style="width:16.5%"></div><span class="bt">4.0%</span></td></tr><tr><td class="code">Windy</td><td>21</td><td class="bc"><div class="bar" style="width:15.1%"></div><span class="bt">3.7%</span></td></tr><tr><td class="code">Rain</td><td>20</td><td class="bc"><div class="bar" style="width:14.4%"></div><span class="bt">3.5%</span></td></tr><tr><td class="code">Haze</td><td>8</td><td class="bc"><div class="bar" style="width:5.8%"></div><span class="bt">1.4%</span></td></tr><tr><td class="code">Snow</td><td>4</td><td class="bc"><div class="bar" style="width:2.9%"></div><span class="bt">0.7%</span></td></tr><tr><td class="code">HeavyRain</td><td>4</td><td class="bc"><div class="bar" style="width:2.9%"></div><span class="bt">0.7%</span></td></tr><tr><td class="code">Foggy</td><td>2</td><td class="bc"><div class="bar" style="width:1.4%"></div><span class="bt">0.3%</span></td></tr><tr><td class="code">HeavySnow</td><td>1</td><td class="bc"><div class="bar" style="width:0.7%"></div><span class="bt">0.2%</span></td></tr>
+</table></div>
+  </div>
+  <div>
+    <div class="pair-label">cron のみ（25件）</div>
+    <div class="sec"><table>
+<tr><th>conditionCode</th><th>件数</th><th></th></tr>
+<tr><td class="code">Cloudy</td><td>11</td><td class="bc"><div class="bar" style="width:100.0%"></div><span class="bt">44.0%</span></td></tr><tr><td class="code">PartlyCloudy</td><td>4</td><td class="bc"><div class="bar" style="width:36.4%"></div><span class="bt">16.0%</span></td></tr><tr><td class="code">MostlyClear</td><td>4</td><td class="bc"><div class="bar" style="width:36.4%"></div><span class="bt">16.0%</span></td></tr><tr><td class="code">MostlyCloudy</td><td>3</td><td class="bc"><div class="bar" style="width:27.3%"></div><span class="bt">12.0%</span></td></tr><tr><td class="code">Windy</td><td>2</td><td class="bc"><div class="bar" style="width:18.2%"></div><span class="bt">8.0%</span></td></tr><tr><td class="code">Clear</td><td>1</td><td class="bc"><div class="bar" style="width:9.1%"></div><span class="bt">4.0%</span></td></tr>
+</table></div>
+  </div>
+</div>
 
 <h2>conditionCode パラメータ分析</h2>
 <div class="sec"><table>
@@ -57,7 +94,7 @@ td{padding:.35rem .5rem;border-bottom:1px solid #21262d}
 <tr><td class="code">Clear</td><td>140</td><td class="rng">-37.0 ~ 44.6 (20.1)</td><td class="rng">0.3 ~ 23.8 (7.1)</td><td class="rng">0.1 ~ 0.9 (0.5)</td><td class="rng">0.0 ~ 0.1 (0)</td><td class="rng">0.0 ~ 0.0 (0)</td></tr><tr><td class="code">PartlyCloudy</td><td>98</td><td class="rng">-30.4 ~ 34.5 (18)</td><td class="rng">0.7 ~ 23.6 (9.5)</td><td class="rng">0.1 ~ 0.9 (0.7)</td><td class="rng">0.4 ~ 0.6 (0.5)</td><td class="rng">0.0 ~ 2.4 (0.1)</td></tr><tr><td class="code">Cloudy</td><td>98</td><td class="rng">-29.6 ~ 32.3 (13.5)</td><td class="rng">0.5 ~ 23.9 (8.4)</td><td class="rng">0.1 ~ 1.0 (0.7)</td><td class="rng">0.9 ~ 1.0 (0.9)</td><td class="rng">0.0 ~ 1.0 (0)</td></tr><tr><td class="code">MostlyClear</td><td>91</td><td class="rng">-33.8 ~ 44.9 (20.4)</td><td class="rng">0.4 ~ 22.4 (9)</td><td class="rng">0.1 ~ 0.9 (0.6)</td><td class="rng">0.1 ~ 0.4 (0.2)</td><td class="rng">0.0 ~ 0.0 (0)</td></tr><tr><td class="code">MostlyCloudy</td><td>87</td><td class="rng">-25.6 ~ 42.6 (16.9)</td><td class="rng">0.6 ~ 22.0 (8.4)</td><td class="rng">0.1 ~ 1.0 (0.7)</td><td class="rng">0.6 ~ 0.9 (0.8)</td><td class="rng">0.0 ~ 1.7 (0.1)</td></tr><tr><td class="code">Windy</td><td>23</td><td class="rng">-4.5 ~ 31.2 (19.8)</td><td class="rng">24.7 ~ 34.0 (28.2)</td><td class="rng">0.5 ~ 0.8 (0.7)</td><td class="rng">0.1 ~ 1.0 (0.8)</td><td class="rng">0.0 ~ 1.0 (0.1)</td></tr><tr><td class="code">Drizzle</td><td>23</td><td class="rng">2.1 ~ 31.5 (21.5)</td><td class="rng">0.4 ~ 67.3 (16.1)</td><td class="rng">0.7 ~ 1.0 (0.8)</td><td class="rng">0.6 ~ 1.0 (0.9)</td><td class="rng">0.3 ~ 0.9 (0.6)</td></tr><tr><td class="code">Rain</td><td>20</td><td class="rng">1.9 ~ 28.8 (22.6)</td><td class="rng">2.8 ~ 75.3 (19.2)</td><td class="rng">0.8 ~ 1.0 (0.9)</td><td class="rng">0.8 ~ 1.0 (0.9)</td><td class="rng">0.9 ~ 6.1 (2.4)</td></tr><tr><td class="code">Haze</td><td>8</td><td class="rng">-9.9 ~ 11.6 (0.3)</td><td class="rng">0.4 ~ 14.9 (7.6)</td><td class="rng">0.9 ~ 0.9 (0.9)</td><td class="rng">0.7 ~ 1.0 (0.9)</td><td class="rng">0.0 ~ 0.3 (0)</td></tr><tr><td class="code">Snow</td><td>4</td><td class="rng">-3.5 ~ 0.5 (-1.1)</td><td class="rng">4.2 ~ 15.6 (8.7)</td><td class="rng">0.7 ~ 0.9 (0.8)</td><td class="rng">0.9 ~ 1.0 (1)</td><td class="rng">0.3 ~ 0.7 (0.5)</td></tr><tr><td class="code">HeavyRain</td><td>4</td><td class="rng">14.4 ~ 27.1 (22.5)</td><td class="rng">1.3 ~ 71.3 (33.6)</td><td class="rng">0.9 ~ 1.0 (0.9)</td><td class="rng">0.9 ~ 1.0 (1)</td><td class="rng">6.7 ~ 32.7 (17.1)</td></tr><tr><td class="code">Foggy</td><td>2</td><td class="rng">-7.2 ~ -5.2 (-6.2)</td><td class="rng">12.9 ~ 13.4 (13.1)</td><td class="rng">0.9 ~ 0.9 (0.9)</td><td class="rng">1.0 ~ 1.0 (1)</td><td class="rng">0.0 ~ 0.0 (0)</td></tr><tr><td class="code">HeavySnow</td><td>1</td><td class="rng">-3.5 ~ -3.5 (-3.5)</td><td class="rng">12.9 ~ 12.9 (12.9)</td><td class="rng">0.9 ~ 0.9 (0.9)</td><td class="rng">1.0 ~ 1.0 (1)</td><td class="rng">1.6 ~ 1.6 (1.6)</td></tr>
 </table></div>
 
-<h2>最新の観測（直近25件）</h2>
+<h2>最新の観測（直近50件）</h2>
 <div class="sec"><table>
 <tr><th>時刻(JST)</th><th>地点</th><th>Code</th><th>気温</th><th>風速</th><th>雲量</th><th>降水</th></tr>
 <tr>
@@ -189,10 +226,10 @@ td{padding:.35rem .5rem;border-bottom:1px solid #21262d}
 </table></div>
 
 <div class="footer">
-  観測期間: 2026/3/14 〜 2026/3/14
-  | batch: 493 + targeted: 81 + cron: 25
+  cron 観測期間: 2026/3/14 〜 2026/3/14
+  | 過去データ: 574 + cron: 25
 </div>
 
-<script>document.getElementById('ts').textContent=new Date('2026-03-13T22:36:10.848Z').toLocaleString('ja-JP',{timeZone:'Asia/Tokyo'});</script>
+<script>document.getElementById('ts').textContent=new Date('2026-03-13T22:55:11.246Z').toLocaleString('ja-JP',{timeZone:'Asia/Tokyo'});</script>
 </body>
 </html>
